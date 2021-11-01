@@ -1,5 +1,6 @@
 package com.github.hiltonfarias.bookManager.resource;
 
+import com.github.hiltonfarias.bookManager.model.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,11 @@ public abstract class BaseResource<T> {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    protected ResponseEntity<T> answerSuccess() {
+    protected ResponseEntity<T> answerSuccess(T object) {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    protected ResponseEntity<Void> answerDeletedSuccess() { return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); }
 
     protected ResponseEntity<T> answerSuccessWithItem(T object) {
         return ResponseEntity.status(HttpStatus.OK).body(object);

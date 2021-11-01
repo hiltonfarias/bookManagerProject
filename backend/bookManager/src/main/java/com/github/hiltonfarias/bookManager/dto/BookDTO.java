@@ -32,10 +32,10 @@ public class BookDTO {
     @NotBlank
     private String isbn;
 
-    private LocalDateTime registrationTime;
+//    private LocalDateTime registrationTime;
 
     @NotBlank
-    private LocalDate year;
+    private String year;
 
     @NotNull
     private UserDTO userDTO;

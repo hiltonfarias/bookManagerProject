@@ -53,4 +53,9 @@ public class UserService implements InterfaceUserService {
             }
         });
     }
+
+    @Override
+    public UserDTO save(UserDTO userDTO) {
+        return converterUser.converterEntityToDTO(userRepository.save(converterUser.converterDTOToEntity(userDTO)));
+    }
 }

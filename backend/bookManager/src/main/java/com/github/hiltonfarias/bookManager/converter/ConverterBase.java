@@ -3,7 +3,7 @@ package com.github.hiltonfarias.bookManager.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseConverter<E,D> {
+public abstract class ConverterBase<E,D> {
 
     public abstract D converterEntityToDTO(E entity);
     public abstract E converterDTOToEntity(D dto);

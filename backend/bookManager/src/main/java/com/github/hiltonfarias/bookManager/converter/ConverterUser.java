@@ -2,12 +2,13 @@ package com.github.hiltonfarias.bookManager.converter;
 
 import com.github.hiltonfarias.bookManager.dto.UserDTO;
 import com.github.hiltonfarias.bookManager.model.User;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConverterUser extends BaseConverter<User, UserDTO> {
+public class ConverterUser extends ConverterBase<User, UserDTO> {
     @Override
     public UserDTO converterEntityToDTO(User entity) {
 

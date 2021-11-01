@@ -2,15 +2,17 @@ package com.github.hiltonfarias.bookManager.converter;
 
 import com.github.hiltonfarias.bookManager.dto.BookDTO;
 import com.github.hiltonfarias.bookManager.model.Book;
-import com.github.hiltonfarias.bookManager.model.User;
 import com.github.hiltonfarias.bookManager.service.InterfaceUserService;
+import org.hibernate.type.LocalDateTimeType;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
-public class ConverterBook extends BaseConverter<Book, BookDTO> {
+public class ConverterBook extends ConverterBase<Book, BookDTO> {
 
     @Autowired
     private InterfaceUserService userService;
@@ -39,7 +41,7 @@ public class ConverterBook extends BaseConverter<Book, BookDTO> {
                 .isbn(dto.getIsbn())
                 .language(dto.getLanguage())
                 .commonCover(dto.getCommonCover())
-                .registrationTime(dto.getRegistrationTime())
+                .registrationTime(LocalDateTime.now())
                 .publisher(dto.getPublisher())
                 .year(dto.getYear())
                 .users(userService.consultEntity(dto.getUserDTO().getLogin()))

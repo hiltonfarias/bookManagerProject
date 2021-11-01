@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @ToString
 @Builder
@@ -50,7 +50,7 @@ public class Book extends EntityBase {
     private LocalDateTime registrationTime;
 
     @Column(name = "BOOK_YEAR", nullable = false)
-    private LocalDate year;
+    private String year;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "BOOK_USER")

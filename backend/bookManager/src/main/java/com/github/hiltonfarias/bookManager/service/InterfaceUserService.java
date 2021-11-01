@@ -11,5 +11,5 @@ public interface InterfaceUserService {
     UserDTO consult(String login);
     List<UserDTO> list(String login);
     void valid(User... users);
-
+    UserDTO save(UserDTO userDTO);
 }
