@@ -4,7 +4,9 @@ import com.github.hiltonfarias.bookManager.converter.ConverterBook;
 import com.github.hiltonfarias.bookManager.dto.BookDTO;
 import com.github.hiltonfarias.bookManager.dto.UserDTO;
 import com.github.hiltonfarias.bookManager.model.Book;
+import com.github.hiltonfarias.bookManager.model.User;
 import com.github.hiltonfarias.bookManager.repository.BookRepository;
+import com.github.hiltonfarias.bookManager.repository.UserRepository;
 import com.github.hiltonfarias.bookManager.service.InterfaceBookService;
 import com.github.hiltonfarias.bookManager.service.InterfaceUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class BookService implements InterfaceBookService {
 
     @Autowired
     private InterfaceUserService interfaceUserService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public BookDTO save(BookDTO bookDTO) {
@@ -55,10 +60,21 @@ public class BookService implements InterfaceBookService {
     }
 
     @Override
-    public List<BookDTO> consult(Long idUser) {
+    public List<BookDTO> consult(Long id) {
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : bookRepository.findAll()) {
-            if (idUser.equals(book.getId())){
+            if (id.equals(book.getId())){
+                bookDTOS.add(converterBook.converterEntityToDTO(book));
+            }
+        }
+        return bookDTOS;
+    }
+
+    public List<BookDTO> consultBookUser(Long id) {
+        User user = userRepository.findById(id).get();
+        List<BookDTO> bookDTOS = new ArrayList<>();
+        for (Book book : bookRepository.findAll()) {
+            if (book.getUsers().equals(user)){
                 bookDTOS.add(converterBook.converterEntityToDTO(book));
             }
         }

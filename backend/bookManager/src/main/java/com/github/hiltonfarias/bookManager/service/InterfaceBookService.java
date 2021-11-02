@@ -17,4 +17,6 @@ public interface InterfaceBookService {
 
     BookDTO replace(BookDTO bookDTO, Long id);
 
+    List<BookDTO> consultBookUser(Long id);
+
 }
