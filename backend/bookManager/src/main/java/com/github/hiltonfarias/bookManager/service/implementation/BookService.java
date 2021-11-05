@@ -2,7 +2,6 @@ package com.github.hiltonfarias.bookManager.service.implementation;
 
 import com.github.hiltonfarias.bookManager.converter.ConverterBook;
 import com.github.hiltonfarias.bookManager.dto.BookDTO;
-import com.github.hiltonfarias.bookManager.dto.UserDTO;
 import com.github.hiltonfarias.bookManager.model.Book;
 import com.github.hiltonfarias.bookManager.model.User;
 import com.github.hiltonfarias.bookManager.repository.BookRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService implements InterfaceBookService {
@@ -34,14 +32,9 @@ public class BookService implements InterfaceBookService {
 
     @Override
     public BookDTO save(BookDTO bookDTO) {
-//        BookDTO bookDTOReturn = null;
-
-//        if (bookDTO.getUserDTO().equals()) {
-            Book book = converterBook.converterDTOToEntity(bookDTO);
-            interfaceUserService.valid(book.getUsers());
-            Book savedBook = bookRepository.save(book);
-//            bookDTOReturn = converterBook.converterEntityToDTO(savedBook);
-//        }
+        Book book = converterBook.converterDTOToEntity(bookDTO);
+        interfaceUserService.valid(book.getUsers());
+        Book savedBook = bookRepository.save(book);
         return converterBook.converterEntityToDTO(savedBook);
     }
 
@@ -63,7 +56,7 @@ public class BookService implements InterfaceBookService {
     public List<BookDTO> consult(Long id) {
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : bookRepository.findAll()) {
-            if (id.equals(book.getId())){
+            if (id.equals(book.getId())) {
                 bookDTOS.add(converterBook.converterEntityToDTO(book));
             }
         }
@@ -74,7 +67,7 @@ public class BookService implements InterfaceBookService {
         User user = userRepository.findById(id).get();
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : bookRepository.findAll()) {
-            if (book.getUsers().equals(user)){
+            if (book.getUsers().equals(user)) {
                 bookDTOS.add(converterBook.converterEntityToDTO(book));
             }
         }

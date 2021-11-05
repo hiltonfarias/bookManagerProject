@@ -2,7 +2,6 @@ package com.github.hiltonfarias.bookManager.converter;
 
 import com.github.hiltonfarias.bookManager.dto.UserDTO;
 import com.github.hiltonfarias.bookManager.model.User;
-
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,6 @@ public class ConverterUser extends ConverterBase<User, UserDTO> {
             }
         });
         return modelMapper.map(entity, UserDTO.class);
-
     }
 
     @Override
@@ -33,6 +31,6 @@ public class ConverterUser extends ConverterBase<User, UserDTO> {
 
             }
         });
-        return modelMapper.map(dto,User.class);
+        return modelMapper.map(dto, User.class);
     }
 }

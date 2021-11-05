@@ -13,7 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = false)
@@ -28,28 +27,28 @@ public class Book extends EntityBase {
 
     private static final Long serialVersionUID = 1L;
 
-    @Column(name = "BOOK_AUTHOR", nullable = false)
+    @Column(name = "AUTHOR", nullable = false)
     private String author;
 
-    @Column(name = "BOOK_TITLE", nullable = false)
+    @Column(name = "TITLE", nullable = false)
     private String title;
 
-    @Column(name = "BOOK_PUBLISHER", nullable = false)
+    @Column(name = "PUBLISHER", nullable = false)
     private String publisher;
 
-    @Column(name = "BOOK_LANGUAGE", nullable = false)
+    @Column(name = "LANGUAGE", nullable = false)
     private String language;
 
-    @Column(name = "BOOK_COMMON_COVER", nullable = false)
+    @Column(name = "COMMON_COVER", nullable = false)
     private String commonCover;
 
-    @Column(name = "BOOK_ISBN", nullable = false)
+    @Column(name = "ISBN", nullable = false)
     private String isbn;
 
-    @Column(name = "BOOK_REGISTRATION_TIME", nullable = false)
+    @Column(name = "REGISTRATION_TIME", nullable = false)
     private LocalDateTime registrationTime;
 
-    @Column(name = "BOOK_YEAR", nullable = false)
+    @Column(name = "YEAR", nullable = false)
     private String year;
 
     @ManyToOne(cascade = CascadeType.MERGE)

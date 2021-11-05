@@ -1,7 +1,7 @@
 package com.github.hiltonfarias.bookManager.enums;
 
 public enum PermissionType {
-    USER("ROLE_USE"), ADMIN("ROLE_ADM");
+    USER("ROLE_USER"), ADMIN("ROLE_ADMIN");
     private final String code;
 
     private PermissionType(String code) {

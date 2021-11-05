@@ -22,4 +22,6 @@ public class UserDTO {
     private String email;
 
     private LocalDate birthDate;
+
+    private boolean active = true;
 }

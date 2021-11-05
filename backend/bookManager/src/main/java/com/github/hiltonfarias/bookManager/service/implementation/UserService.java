@@ -6,8 +6,8 @@ import com.github.hiltonfarias.bookManager.exceptions.BusinessException;
 import com.github.hiltonfarias.bookManager.model.User;
 import com.github.hiltonfarias.bookManager.repository.UserRepository;
 import com.github.hiltonfarias.bookManager.service.InterfaceUserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +56,7 @@ public class UserService implements InterfaceUserService {
 
     @Override
     public UserDTO save(UserDTO userDTO) {
+        userDTO.setPassword(new BCryptPasswordEncoder().encode(userDTO.getPassword()));
         return converterUser.converterEntityToDTO(userRepository.save(converterUser.converterDTOToEntity(userDTO)));
     }
 }

@@ -1,11 +1,8 @@
 package com.github.hiltonfarias.bookManager.resource;
 
 import com.github.hiltonfarias.bookManager.dto.UserDTO;
-import com.github.hiltonfarias.bookManager.model.User;
-import com.github.hiltonfarias.bookManager.repository.UserRepository;
 import com.github.hiltonfarias.bookManager.service.InterfaceUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

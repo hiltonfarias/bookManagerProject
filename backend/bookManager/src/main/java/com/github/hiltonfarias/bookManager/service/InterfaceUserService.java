@@ -8,8 +8,12 @@ import java.util.List;
 public interface InterfaceUserService {
 
     User consultEntity(String login);
+
     UserDTO consult(String login);
+
     List<UserDTO> list(String login);
+
     void valid(User... users);
+
     UserDTO save(UserDTO userDTO);
 }

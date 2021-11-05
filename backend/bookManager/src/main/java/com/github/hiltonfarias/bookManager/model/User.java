@@ -5,13 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +21,6 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -34,70 +30,69 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Table(name = "USERS")
-public class User extends EntityBase {
-//    public class User extends EntityBase implements UserDetails {
+public class User extends EntityBase implements UserDetails {
+
     private static final Long serialVersionUID = 1L;
 
-    @Column(name = "USER_LOGIN", nullable = false)
+    @Column(name = "LOGIN", nullable = false)
     private String login;
 
-    @Column(name = "USER_PASSWORD", nullable = false)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "USER_FULL_NAME", nullable = false)
+    @Column(name = "FULL_NAME", nullable = false)
     private String fullName;
 
-    @Column(name = "USER_EMAIL", nullable = false)
+    @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "USER_BIRTH_DATE", nullable = false)
+    @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDate birthDate;
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "USER_PERMISSION", nullable = false)
-//    private PermissionType permissionType;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "USER_PERMISSION", nullable = false)
+    private PermissionType permissionType = PermissionType.USER;
 
-    @OneToMany(mappedBy = "users",fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = true)
-    @Column(name = "USER_BOOKS", nullable = false)
+    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.MERGE, orphanRemoval = true)
+    @Column(name = "USER_BOOKS")
     private List<Book> bookList;
 
     @Column(name = "USER_ACTIVE", nullable = false)
     private boolean active;
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        List<GrantedAuthority> grantedAuthorities = Arrays.asList(new SimpleGrantedAuthority(permissionType.getCode()));
-//        return grantedAuthorities;
-////        return Arrays.asList(new SimpleGrantedAuthority(permissionType.getCode()));
-//    }
-//
-//    @Override
-//    public String getPassword() {
-//        return this.password;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return this.login;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return this.active;
-//    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> grantedAuthorities = Arrays.asList(new SimpleGrantedAuthority(permissionType.getCode()));
+        return grantedAuthorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.active;
+    }
 }

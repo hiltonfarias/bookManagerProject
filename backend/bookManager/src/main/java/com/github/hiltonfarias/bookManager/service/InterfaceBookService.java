@@ -1,7 +1,6 @@
 package com.github.hiltonfarias.bookManager.service;
 
 import com.github.hiltonfarias.bookManager.dto.BookDTO;
-import com.github.hiltonfarias.bookManager.model.Book;
 
 import java.util.List;
 
@@ -18,5 +17,4 @@ public interface InterfaceBookService {
     BookDTO replace(BookDTO bookDTO, Long id);
 
     List<BookDTO> consultBookUser(Long id);
-
 }

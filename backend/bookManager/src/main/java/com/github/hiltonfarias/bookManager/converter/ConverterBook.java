@@ -3,7 +3,6 @@ package com.github.hiltonfarias.bookManager.converter;
 import com.github.hiltonfarias.bookManager.dto.BookDTO;
 import com.github.hiltonfarias.bookManager.model.Book;
 import com.github.hiltonfarias.bookManager.service.InterfaceUserService;
-import org.hibernate.type.LocalDateTimeType;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class ConverterBook extends ConverterBase<Book, BookDTO> {
 
     @Override
     public BookDTO converterEntityToDTO(Book entity) {
-        
+
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.addMappings(new PropertyMap<Book, BookDTO>() {
             @Override
@@ -27,8 +26,7 @@ public class ConverterBook extends ConverterBase<Book, BookDTO> {
 
             }
         });
-        return modelMapper.map(entity,BookDTO.class);
-
+        return modelMapper.map(entity, BookDTO.class);
     }
 
     @Override
